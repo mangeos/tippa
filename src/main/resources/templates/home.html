@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout}"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  lang="en"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello TailWind CSS</title>
+    <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
+  </head>
+  <body>
+    <main class="flex-1 p-5 overflow-auto" layout:fragment="content">
+      <div th:each="match : ${matchList}" class="grid grid-cols-5 gap-1">
+        <div
+          th:text="${match.team1}"
+          class="h-10 text-2xl md:text-lg text-center"
+        ></div>
+        <div
+          th:text="${match.team2}"
+          class="h-10 text-2xl md:text-lg text-center"
+        ></div>
+        <div
+          th:text="${match.matchDate}"
+          class="h-10 text-2xl md:text-lg text-center"
+        ></div>
+        <select
+          class="h-10 text-2xl md:text-lg text-center"
+          th:name="${match.matchId}"
+        >
+          <option
+            th:each="score : ${scores}"
+            th:value="${score}"
+            th:text="${score}"
+            th:selected="${score == match.result}"
+            class="text-2xl md:text-lg"
+          ></option>
+        </select>
+        <div
+          th:text="${match.matchTime + ' ' + match.tvChannel}"
+          class="h-10 text-2xl md:text-lg text-center"
+        ></div>
+      </div>
+    </main>
+  </body>
+</html>
+<script>
+  // Select all <select> elements
+  const selectElements = document.querySelectorAll("select");
+
+  // Add a 'change' event listener to each <select> element
+  selectElements.forEach((selectElement) => {
+    selectElement.addEventListener("change", (event) => {
+      const selectedOption = event.target.value;
+      const selectedMatchId = event.target.name;
+
+      if (!selectedOption || !selectedMatchId) {
+        console.error("Invalid selection or select element name.");
+        return;
+      }
+
+      console.log(
+        `Selected option: ${selectedOption}, Select element name: ${selectedMatchId}`
+      );
+
+      fetch("http://localhost:8080/result", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Any other headers
+        },
+        body: JSON.stringify({
+          matchResult: selectedOption,
+          matchId: selectedMatchId,
+          // Any other data
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Response data:", data);
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
+    });
+  });
+</script>

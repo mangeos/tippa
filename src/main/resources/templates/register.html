@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout}"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  lang="en"
+>
+  <head>
+    <meta
+      charset="UTF-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Login Page</title>
+    <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
+  </head>
+
+  <div class="flex flex-1" layout:fragment="content">
+    <main class="flex-1 flex p-4 overflow-auto sm:flex-row flex-col-reverse">
+      <div class="flex-1"></div>
+      <div
+        style="background-color: #ffffff"
+        class="flex flex-1 flex-col items-center"
+      >
+        <div class="flex h-12 w-full justify-center gap-1">
+          <a
+            href="/"
+            class="flex-1 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-tl-lg rounded-tr-lg"
+          >
+            Logga in
+          </a>
+          <a
+            href="/register"
+            class="flex-1 text-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-tl-lg rounded-tr-lg"
+          >
+            Skapa konto
+          </a>
+        </div>
+        <div class="flex flex-1">
+          <form action="/login" method="post" class="mt-4 space-y-4">
+            <label for="username" class="text-gray-700 font-medium block"
+              >Username:</label
+            >
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your username"
+              class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full max-w-96"
+            />
+            <label for="password" class="text-gray-700 font-medium block"
+              >Password:</label
+            >
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full max-w-96"
+            />
+
+            <div class="">
+              <button
+                type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 w-full max-w-96"
+              >
+                Skapa
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</html>

@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.em.tippa.dto.MatchListDto;
+import com.em.tippa.dto.CreateMatchListDto;
+import com.em.tippa.dto.GetMatchListDto;
 import com.em.tippa.models.MatchList;
 import com.em.tippa.repository.MatchListRepository;
 import com.em.tippa.services.MatchListService;
@@ -22,14 +23,14 @@ public class MatchListServiceImp implements MatchListService {
     }
 
     @Override
-    public List<MatchListDto> findAllMatches() {
+    public List<GetMatchListDto> findAllMatches() {
         // System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
         List<MatchList> matchLists = matchListRepository.findAll();
         return matchLists.stream().map((match) -> setToMatchListDto(match)).collect(Collectors.toList());
     }
 
-    private MatchListDto setToMatchListDto(MatchList match) {
-        return MatchListDto.builder()
+    private GetMatchListDto setToMatchListDto(MatchList match) {
+        return GetMatchListDto.builder()
                 .matchId(match.getMatchId())
                 .team1(match.getTeam1())
                 .team2(match.getTeam2())
@@ -41,9 +42,21 @@ public class MatchListServiceImp implements MatchListService {
 
     }
 
+    private MatchList setToMatchList(CreateMatchListDto matchDto) {
+        return MatchList.builder()
+                .team1(matchDto.getTeam1())
+                .team2(matchDto.getTeam2())
+                .tvChannel(matchDto.getTvChannel())
+                .matchTime(matchDto.getMatchTime())
+                .matchDate(matchDto.getMatchDate())
+                .build();
+
+    }
+
     @Override
-    public MatchList saveMatch(MatchList match) {
-        return matchListRepository.save(match);
+    public MatchList saveMatch(CreateMatchListDto match) {
+        MatchList m = setToMatchList(match);
+        return matchListRepository.save(m);
     }
 
     @Override
@@ -65,7 +78,7 @@ public class MatchListServiceImp implements MatchListService {
     }
 
     @Override
-    public List<MatchListDto> findAllByOrderByDateFieldDesc() {
+    public List<GetMatchListDto> findAllByOrderByDateFieldDesc() {
         List<MatchList> matchLists = matchListRepository.findAllByOrderByMatchDateDesc();
         return matchLists.stream().map((match) -> setToMatchListDto(match)).collect(Collectors.toList());
     }

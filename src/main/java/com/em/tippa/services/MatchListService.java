@@ -2,17 +2,16 @@ package com.em.tippa.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-import com.em.tippa.dto.MatchListDto;
+import com.em.tippa.dto.CreateMatchListDto;
+import com.em.tippa.dto.GetMatchListDto;
 import com.em.tippa.models.MatchList;
 
 public interface MatchListService {
-    List<MatchListDto> findAllMatches();
+    List<GetMatchListDto> findAllMatches();
 
-    List<MatchListDto> findAllByOrderByDateFieldDesc();
+    List<GetMatchListDto> findAllByOrderByDateFieldDesc();
 
-    MatchList saveMatch(MatchList match);
+    MatchList saveMatch(CreateMatchListDto match);
 
     MatchList findMatchById(Long id);
 

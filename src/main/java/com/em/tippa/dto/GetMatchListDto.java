@@ -2,12 +2,13 @@ package com.em.tippa.dto;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
 
 @Builder
 @Data
-public class MatchListDto {
+public class GetMatchListDto {
 
     private Long matchId;
 

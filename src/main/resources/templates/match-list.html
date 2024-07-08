@@ -7,7 +7,11 @@
   lang="en"
 >
   <head>
-    <meta charset="UTF-8" />
+    <meta
+      charset="UTF-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Hello TailWind CSS</title>
     <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
   </head>
@@ -92,6 +96,11 @@
             type="text"
             th:field="*{team1}"
           />
+          <p
+            class="text-red-600"
+            th:if="${#fields.hasErrors('team1')}"
+            th:errors="*{team1}"
+          ></p>
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="team2"
@@ -103,6 +112,11 @@
             type="text"
             th:field="*{team2}"
           />
+          <p
+            class="text-red-600"
+            th:if="${#fields.hasErrors('team2')}"
+            th:errors="*{team2}"
+          ></p>
         </div>
         <div class="mb-4">
           <label
@@ -129,6 +143,11 @@
             type="text"
             th:field="*{matchTime}"
           />
+          <p
+            class="text-red-600"
+            th:if="${#fields.hasErrors('matchTime')}"
+            th:errors="*{matchTime}"
+          ></p>
         </div>
 
         <div class="mb-4">
@@ -143,6 +162,11 @@
             type="date"
             th:field="*{matchDate}"
           />
+          <p
+            class="text-red-600"
+            th:if="${#fields.hasErrors('matchDate')}"
+            th:errors="*{matchDate}"
+          ></p>
         </div>
         <div class="flex items-center justify-between">
           <button

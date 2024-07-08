@@ -8,11 +8,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>Hello TailWind CSS</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
   </head>
   <body class="bg-gray-100 text-gray-900 flex flex-col h-screen">
     <header
-      class="bg-blue-600 text-white p-4 flex justify-between items-center"
+      style="background-color: #37003c"
+      class="text-white p-4 flex justify-between items-center"
     >
       <h1 class="text-xl lg:text-2xl">Header</h1>
       <button id="menu-button" class="block lg:hidden focus:outline-none">
@@ -35,8 +40,9 @@
 
     <div class="flex flex-1">
       <aside
+        style="background-color: #4e0056"
         id="sidebar"
-        class="bg-gray-800 text-white w-64 p-4 transition-transform transform -translate-x-full lg:translate-x-0 lg:relative fixed inset-y-0 left-0 z-50 lg:z-auto"
+        class="text-white w-64 p-4 transition-transform transform -translate-x-full lg:translate-x-0 lg:relative fixed inset-y-0 left-0 z-50 lg:z-auto"
       >
         <div class="flex justify-between items-center mb-4">
           <h2 class="text-lg lg:text-xl">Sidebar</h2>
@@ -63,7 +69,7 @@
               <a
                 href="/home"
                 class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
-                >Hem</a
+                ><i class="material-icons">home</i>Start</a
               >
             </li>
             <li>
@@ -92,7 +98,10 @@
       </aside>
       <main layout:fragment="content"></main>
     </div>
-    <footer class="bg-blue-600 text-white p-4 text-center">
+    <footer
+      style="background-color: #37003c"
+      class="text-white p-4 text-center"
+    >
       <p class="text-base lg:text-lg">&copy; 2024 Your Company</p>
     </footer>
 

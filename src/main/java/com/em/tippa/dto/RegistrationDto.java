@@ -1,5 +1,6 @@
 package com.em.tippa.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import jakarta.validation.constraints.NotEmpty;

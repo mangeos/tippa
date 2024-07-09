@@ -19,6 +19,11 @@
       style="background-color: #37003c"
       class="text-white p-4 flex justify-between items-center"
     >
+      <!-- Kontrollera om användaren är autentiserad innan du renderar utloggningsformuläret -->
+<div sec:authorize="hasRole('ROLE_USER')">
+    <!-- Content visible only to users with ROLE_USER role -->
+    <p>Welcome, User!</p>
+</div>
       <h1 class="text-xl lg:text-2xl">Header</h1>
       <button id="menu-button" class="block lg:hidden focus:outline-none">
         <svg

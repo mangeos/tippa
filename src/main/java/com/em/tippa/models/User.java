@@ -31,7 +31,6 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @Column(unique = true)
     private String phoneNumber;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

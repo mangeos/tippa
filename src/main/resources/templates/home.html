@@ -16,6 +16,10 @@
   <body>
     <main class="flex-1 p-5 overflow-auto" layout:fragment="content">
       <div class="max-w-3xl min-w-96">
+        {% comment %} Vid inloggning och eller skapande av konto {% endcomment %}
+        <div th:if="${param.success}" class="alert alert-success">
+                You are registered successfully!
+            </div>
         <div
           class="flex justify-center items-center my-8 border-solid border-b border-black flex-col"
         >

@@ -2,6 +2,7 @@
 <html
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/springsecurity"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   lang="en"
 >
@@ -19,11 +20,13 @@
       style="background-color: #37003c"
       class="text-white p-4 flex justify-between items-center"
     >
-      <!-- Kontrollera om användaren är autentiserad innan du renderar utloggningsformuläret -->
-<div sec:authorize="hasRole('ROLE_USER')">
-    <!-- Content visible only to users with ROLE_USER role -->
-    <p>Welcome, User!</p>
-</div>
+      <div sec:authorize="isAuthenticated()">
+        <a href="/logout">logout</a>
+      </div>
+      <div sec:authorize="isAuthenticated()">
+        Logged user: <span sec:authentication="name">Bob</span>
+      </div>
+
       <h1 class="text-xl lg:text-2xl">Header</h1>
       <button id="menu-button" class="block lg:hidden focus:outline-none">
         <svg

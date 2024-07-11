@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build:postcss": "set NODE_ENV=production && postcss src/main/resources/static/css/style.tailwind.css -o target/classes/static/css/style.build.tailwind.css",
-    "watch:postcss": "nodemon --watch 'src/**/*.html' --exec 'npm run build:postcss' --ext 'html,css'"
+    "build-linux:postcss": "NODE_ENV=production postcss src/main/resources/static/css/style.tailwind.css -o target/classes/static/css/style.build.tailwind.css",
+    "watch:postcss": "nodemon --watch 'src/**/*.html' --exec 'npm run build:postcss' --ext 'html,css'",
+    "watch-linux:postcss": "nodemon --watch 'src/**/*.html' --exec 'npm run build-linux:postcss' --ext 'html,css'"
   },
   "keywords": [],
   "author": "",

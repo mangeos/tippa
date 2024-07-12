@@ -15,39 +15,40 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    // private CustomUserDetailsService userDetailsService;
+        // private CustomUserDetailsService userDetailsService;
 
-    // @Autowired
-    // public SecurityConfig(CustomUserDetailsService userDetailsService) {
-    // this.userDetailsService = userDetailsService;
-    // }
+        // @Autowired
+        // public SecurityConfig(CustomUserDetailsService userDetailsService) {
+        // this.userDetailsService = userDetailsService;
+        // }
 
-    // @Bean
-    // public static PasswordEncoder passwordEncoder() {
-    // return new BCryptPasswordEncoder();
-    // }
+        // @Bean
+        // public static PasswordEncoder passwordEncoder() {
+        // return new BCryptPasswordEncoder();
+        // }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/login", "/register", "/css/**", "/public/**",
-                                "/js/**")
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/home?success", false)
-                        .loginProcessingUrl("/perform_login")
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                .authorizeHttpRequests((requests) -> requests
+                                                .requestMatchers("/login", "/register", "/css/**", "/public/**",
+                                                                "/js/**")
+                                                .permitAll()
+                                                .anyRequest().authenticated())
+                                .formLogin((form) -> form
+                                                .loginPage("/login")
+                                                // .loginProcessingUrl("/perform_login")
+                                                .defaultSuccessUrl("/home?success", false)
 
-                        .failureUrl("/login?error=true")
-                        .permitAll())
-                .logout((logout) -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll());
-        return http.build();
-    }
-    // public void configure(AuthenticationManagerBuilder builder) throws Exception
-    // {
-    // builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    // }
+                                                .failureUrl("/login?error=true")
+                                                .permitAll())
+                                .logout((logout) -> logout
+                                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                                .permitAll());
+                return http.build();
+        }
+        // public void configure(AuthenticationManagerBuilder builder) throws Exception
+        // {
+        // builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        // }
 }

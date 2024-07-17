@@ -15,29 +15,32 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-        // private CustomUserDetailsService userDetailsService;
+        private CustomUserDetailsService userDetailsService;
 
-        // @Autowired
-        // public SecurityConfig(CustomUserDetailsService userDetailsService) {
-        // this.userDetailsService = userDetailsService;
-        // }
+        @Autowired
+        public SecurityConfig(CustomUserDetailsService userDetailsService) {
+                this.userDetailsService = userDetailsService;
+        }
 
-        // @Bean
-        // public static PasswordEncoder passwordEncoder() {
-        // return new BCryptPasswordEncoder();
-        // }
+        @Bean
+        public static PasswordEncoder passwordEncoder() {
+                System.out.println("PasswordEncoder");
+                return new BCryptPasswordEncoder();
+        }
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                System.out.println("securityFilterChain");
                 http
                                 .authorizeHttpRequests((requests) -> requests
-                                                .requestMatchers("/login", "/register", "/css/**", "/public/**",
+                                                .requestMatchers("/login", "/register/*",
+                                                                "/register", "/css/**", "/public/**",
                                                                 "/js/**")
                                                 .permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin((form) -> form
                                                 .loginPage("/login")
-                                                // .loginProcessingUrl("/perform_login")
+                                                .loginProcessingUrl("/login")
                                                 .defaultSuccessUrl("/home?success", false)
 
                                                 .failureUrl("/login?error=true")
@@ -47,8 +50,9 @@ public class SecurityConfig {
                                                 .permitAll());
                 return http.build();
         }
-        // public void configure(AuthenticationManagerBuilder builder) throws Exception
-        // {
-        // builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-        // }
+
+        public void configure(AuthenticationManagerBuilder builder) throws Exception {
+                System.out.println("configure");
+                builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        }
 }

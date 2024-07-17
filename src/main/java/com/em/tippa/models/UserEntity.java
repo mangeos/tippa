@@ -16,7 +16,7 @@ import lombok.Builder;
 @NoArgsConstructor // Lombok-annotation för att generera en standardkonstruktor utan argument
 @AllArgsConstructor // Lombok-annotation för att generera en konstruktor med alla attribut
 @Table(name = "Users")
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

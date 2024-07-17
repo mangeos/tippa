@@ -24,7 +24,7 @@ public class GroupMembership {
 
     @ManyToOne
     @JoinColumn(name = "userID", nullable = false)
-    private User user;
+    private UserEntity user;
 
     @Column(nullable = false)
     private String roll;

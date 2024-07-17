@@ -24,7 +24,7 @@ public class Group {
 
     @ManyToOne
     @JoinColumn(name = "creatorID", nullable = false)
-    private User creator;
+    private UserEntity creator;
 
     @Column(nullable = false)
     private String groupName;

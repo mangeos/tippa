@@ -21,7 +21,7 @@ public class Point {
 
     @ManyToOne
     @JoinColumn(name = "userID", nullable = false)
-    private User user;
+    private UserEntity user;
 
     @ManyToOne
     @JoinColumn(name = "groupID", nullable = false)

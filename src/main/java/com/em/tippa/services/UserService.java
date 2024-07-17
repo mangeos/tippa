@@ -1,12 +1,12 @@
 package com.em.tippa.services;
 
 import com.em.tippa.dto.RegistrationDto;
-import com.em.tippa.models.User;
+import com.em.tippa.models.UserEntity;
 
 public interface UserService {
     void saveUser(RegistrationDto registrationDto);
 
-    User findByEmail(String email);
+    UserEntity findByEmail(String email);
 
-    User findByUsername(String username);
+    UserEntity findByUsername(String username);
 }

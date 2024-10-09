@@ -4,7 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.Date;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import lombok.Builder;
 
 @Data
@@ -27,10 +32,10 @@ public class Point {
     @JoinColumn(name = "groupID", nullable = false)
     private Group group;
 
+    @Builder.Default
     @Column(nullable = false)
-    private int points;
+    private int points = 0;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
+    @CreationTimestamp
+    private LocalDateTime creationDate;
 }

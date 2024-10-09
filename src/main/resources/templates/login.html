@@ -17,12 +17,12 @@
     <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
   </head>
 
-  <div class="flex flex-1" layout:fragment="content">
-    <main class="flex-1 flex p-4 overflow-auto sm:flex-row flex-col-reverse">
-      <div class="flex-1"></div>
+  <div class="flex flex-1 " layout:fragment="content">
+    <main class="flex-1 flex p-4 overflow-auto w-full sm:justify-center">
+   
       <div
         style="background-color: #ffffff"
-        class="flex flex-1 flex-col items-center"
+        class="flex sm:w-[700px] flex-col items-center w-full sm:justify-center"
       >
         <!-- jag tror den ska vara har -->
         <div th:if="${param.error}" class="alert alert-success">

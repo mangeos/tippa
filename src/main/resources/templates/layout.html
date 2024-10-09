@@ -24,10 +24,10 @@
         <a href="/logout">logout</a>
       </div>
       <div sec:authorize="isAuthenticated()">
-        Logged user: <span sec:authentication="name">Bob</span>
+        <a href="/home"> Tipping</a> 
       </div>
 
-      <h1 class="text-xl lg:text-2xl">Header</h1>
+     
       <button id="menu-button" class="block lg:hidden focus:outline-none">
         <svg
           class="w-6 h-6"
@@ -82,16 +82,16 @@
             </li>
             <li>
               <a
-                href="/match-list"
+                href="/meny"
                 class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
-                >Redigera</a
+                >Meny</a
               >
             </li>
             <li>
               <a
-                href="#"
+                href="/all-groups"
                 class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
-                >Services</a
+                >Alla Grupper</a
               >
             </li>
             <li>

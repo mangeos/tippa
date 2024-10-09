@@ -10,123 +10,23 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Hello TailWind CSS</title>
+    <title>Hem - Dina Grupper</title>
 
     <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
   </head>
   <body>
     <main class="flex-1 p-5 overflow-auto" layout:fragment="content">
-      <div class="max-w-3xl min-w-96">
-        {% comment %} Vid inloggning och eller skapande av konto {% endcomment %}
-        <div th:if="${param.success}" class="alert alert-success">
-                You are registered successfully!
-            </div>
-        <div
-          class="flex justify-center items-center my-8 border-solid border-b border-black flex-col"
-        >
-          <h1 class="text-4xl">Dina Matcher</h1>
-          <br />
-          <p>
-            Sätt dinna matcher i din grupp, ett poäng för rätt lag som vinner
-            och 3 poäng för rätt resultat.
-          </p>
-        </div>
-        <div th:each="match : ${matchList}" class="grid grid-cols-5 gap-1">
-          <div class="flex items-baseline gap-1">
-            <img
-              src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/se.svg"
-              alt="Sverige flagga"
-              width="20"
-              height="10"
-            />
-            <div
-              th:text="${match.team1}"
-              class="h-10 text-xl sm:text-lg text-center"
-            ></div>
-          </div>
-          <div class="flex items-baseline justify-center"><p>vs</p></div>
-          <div class="flex items-baseline gap-1">
-            <img
-              src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/se.svg"
-              alt="Sverige flagga"
-              width="20"
-              height="10"
-            />
-            <div
-              th:text="${match.team2}"
-              class="h-10 text-xl sm:text-lg text-center"
-            ></div>
-          </div>
-          <select
-            class="h-10 text-xl sm:text-lg text-center"
-            th:name="${match.matchId}"
-          >
-            <option
-              th:each="score : ${scores}"
-              th:value="${score}"
-              th:text="${score}"
-              th:selected="${score == match.result}"
-              class="text-xl sm:text-lg"
-            ></option>
-          </select>
-          <div>
-            <div
-              th:text="${match.matchDate}"
-              class="h-10 text-xs sm:text-lg text-center"
-            ></div>
-            <div
-              th:text="${match.matchTime + ' ' + match.tvChannel}"
-              class="h-10 text-xs sm:text-lg text-center"
-            ></div>
-          </div>
+      <h1 class="text-4xl">Dina Grupper</h1>
+      <br />
+      <hr>
+      <div>
+        <div th:each="g : ${allGroupByCreator}" class="border-b hover:bg-gray-100">
+          <a th:href="'group/'+${g.group.groupID}">
+           <span class="py-3 px-4" th:text="${g.group.groupID}"></span>
+            <span class="py-3 px-4" th:text="${g.group.groupName}"></span>
+          </a>
         </div>
       </div>
     </main>
   </body>
 </html>
-<script>
-  // Select all <select> elements
-  const selectElements = document.querySelectorAll("select");
-
-  // Add a 'change' event listener to each <select> element
-  selectElements.forEach((selectElement) => {
-    selectElement.addEventListener("change", (event) => {
-      const selectedOption = event.target.value;
-      const selectedMatchId = event.target.name;
-
-      if (!selectedOption || !selectedMatchId) {
-        console.error("Invalid selection or select element name.");
-        return;
-      }
-
-      console.log(
-        `Selected option: ${selectedOption}, Select element name: ${selectedMatchId}`
-      );
-
-      fetch("http://localhost:8080/result", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // Any other headers
-        },
-        body: JSON.stringify({
-          matchResult: selectedOption,
-          matchId: selectedMatchId,
-          // Any other data
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Response data:", data);
-        })
-        .catch((error) => {
-          console.error("There was a problem with the fetch operation:", error);
-        });
-    });
-  });
-</script>

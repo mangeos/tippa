@@ -28,7 +28,6 @@ public class UserServiceImp implements UserService {
 
     @Override
     public void saveUser(RegistrationDto registrationDto) {
-        System.err.println("errrroooooooooooooooooooooooooooooooooo");
         UserEntity user = new UserEntity();
         user.setUsername(registrationDto.getUsername());
         user.setEmail(registrationDto.getEmail());

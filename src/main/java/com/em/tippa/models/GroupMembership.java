@@ -11,7 +11,7 @@ import lombok.Builder;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "GroupMemberships")
+@Table(name = "GroupMemberships", uniqueConstraints = @UniqueConstraint(columnNames = { "userID", "groupID" }))
 public class GroupMembership {
 
     @Id

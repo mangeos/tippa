@@ -1,6 +1,7 @@
 package com.em.tippa.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
@@ -16,11 +17,5 @@ public class GetMatchListDto {
 
     private String team2;
 
-    private String tvChannel;
-
-    private String matchTime;
-
-    private LocalDate matchDate;
-
-    private String result;
+    private LocalDateTime matchDate;
 }

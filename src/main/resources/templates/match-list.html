@@ -12,171 +12,26 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <title>Hello TailWind CSS</title>
+    <title>Skapa Grupp Av Matcher</title>
     <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
   </head>
   <body>
     <main class="flex-1 p-5 overflow-auto" layout:fragment="content">
       <!-- <div th:each="match : ${matchList}" class="grid grid-cols-5 gap-1"> -->
-      <table class="max-w-md mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <thead>
-          <tr>
-            <th class="pd-2">Lag1</th>
-            <th class="pd-2">vs</th>
-            <th class="pd-2">Lag2</th>
-            <th class="pd-2">Resultat</th>
-            <th class="pd-2">Tid&Kanal</th>
-            <th class="pd-2">Delete</th>
-          </tr>
-        </thead>
-        <tbody th:each="match : ${matchList}">
-          <tr>
-            <td class="px-2" th:text="${match.team1}"></td>
-            <td class="px-2">VS</td>
-            <td class="px-2" th:text="${match.team2}"></td>
+      <h1>Välj matcher</h1>
 
-            <td class="pd-2">
-              <select class="text-2xl md:text-lg pd-2" id="score" name="score">
-                <option
-                  class="text-2xl md:text-lg"
-                  th:each="score : ${scores}"
-                  th:value="${score}"
-                  th:text="${score}"
-                ></option>
-              </select>
-            </td>
-            <td
-              class="pd-2"
-              th:text="${match.matchTime + ' ' + match.tvChannel}"
-            ></td>
-            <td>
-              <a
-                th:href="@{/match-list/{matchId}/delete(matchId=${match.matchId})}"
-                class="bg-red-500 hover:bg-red-700 text-white px-4 rounded text-2xl md:text-lg"
-                >Delete</a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- <div th:text="${match.team1}" class="h-10 text-2xl md:text-lg"></div>
-        <div th:text="${match.team2}" class="h-10 text-2xl md:text-lg"></div>
-
-        <select class="text-2xl md:text-lg" id="score" name="score">
-          <option
-            class="text-2xl md:text-lg"
-            th:each="score : ${scores}"
-            th:value="${score}"
-            th:text="${score}"
-          ></option>
+      <form method="post" th:action="@{/match-list}">
+        <!-- CSRF-token för att skydda mot CSRF-attacker -->
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <input type="text" id="matchListName" name="matchListName" required />
+        <select name="selectedMatchIds" multiple>
+        <option value="" disabled selected>Välj matcher</option>
+        <th:block th:each="m : ${matches}">
+            <option th:value="${m.matchId}" th:text="${m.team1 + ' - ' + m.team2 + ' ' + m.matchDate}"></option>
+        </th:block>
         </select>
-        <div
-          th:text="${match.matchTime + ' ' + match.tvChannel}"
-          class="h-10 text-2xl md:text-lg"
-        ></div>
-        <a
-          th:href="@{/match-list/{matchId}/delete(matchId=${match.matchId})}"
-          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-2xl md:text-lg"
-          >Delete</a
-        >
-      </div> -->
-      <form
-        th:action="@{/match-list}"
-        th:object="${match}"
-        method="post"
-        class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      >
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="team1"
-            >Team 1:</label
-          >
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="team1"
-            type="text"
-            th:field="*{team1}"
-          />
-          <p
-            class="text-red-600"
-            th:if="${#fields.hasErrors('team1')}"
-            th:errors="*{team1}"
-          ></p>
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="team2"
-            >Team 2:</label
-          >
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="team2"
-            type="text"
-            th:field="*{team2}"
-          />
-          <p
-            class="text-red-600"
-            th:if="${#fields.hasErrors('team2')}"
-            th:errors="*{team2}"
-          ></p>
-        </div>
-        <div class="mb-4">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="tvChannel"
-            >TV Channel:</label
-          >
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="tvChannel"
-            type="text"
-            th:field="*{tvChannel}"
-          />
-        </div>
-        <div class="mb-4">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="matchTime"
-            >Match Time:</label
-          >
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="matchTime"
-            type="text"
-            th:field="*{matchTime}"
-          />
-          <p
-            class="text-red-600"
-            th:if="${#fields.hasErrors('matchTime')}"
-            th:errors="*{matchTime}"
-          ></p>
-        </div>
-
-        <div class="mb-4">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-            for="matchDate"
-            >Match Date:</label
-          >
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="matchDate"
-            type="date"
-            th:field="*{matchDate}"
-          />
-          <p
-            class="text-red-600"
-            th:if="${#fields.hasErrors('matchDate')}"
-            th:errors="*{matchDate}"
-          ></p>
-        </div>
-        <div class="flex items-center justify-between">
-          <button
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+    <button type="submit">Skicka</button>
+    </form>
     </main>
   </body>
 </html>

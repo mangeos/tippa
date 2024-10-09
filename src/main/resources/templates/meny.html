@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout}"
+   xmlns:sec="http://www.thymeleaf.org/extras/springsecurity"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  lang="en"
+>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Meny</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
+  </head>
+  <body>
+    <main class="flex-1 p-5 overflow-auto justify-center items-center flex" layout:fragment="content">
+      <div class=" flex flex-1 gap-1 flex-wrap justify-center items-center">
+        <a href="/home" class="flex md:w-[36rem] w-80 h-64 justify-center items-center m-1 bg-white rounded-md"><i style="font-size: 100px;" class="material-icons">home</i><p >Mina Ligor</p></a>
+        <a href="/match-list" class="flex md:w-[36rem] w-80 h-64 justify-center items-center m-1 bg-white rounded-md"><i style="font-size: 100px;" class="material-icons">add</i><p >Skapa Liga</p></a>
+        <a href="/match" class="flex md:w-[36rem] w-80 h-64 justify-center items-center m-1 bg-white rounded-md"><i style="font-size: 100px;" class="material-icons">search</i><p >Skapa Match:er</p></a>
+        <a href="/home" class="flex md:w-[36rem] w-80 h-64 justify-center items-center m-1 bg-white rounded-md"><i style="font-size: 100px;" class="material-icons">search</i><p >Sök Grupper</p></a>
+        <a href="/create-group" class="flex md:w-[36rem] w-80 h-64 justify-center items-center m-1 bg-white rounded-md"><i style="font-size: 100px;" class="material-icons">add</i><p >Skapa Grupp</p></a>
+      </div> 
+    </main>
+  </body>
+</html>
+

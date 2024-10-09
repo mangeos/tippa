@@ -26,13 +26,18 @@ public class Group {
     @JoinColumn(name = "creatorID", nullable = false)
     private UserEntity creator;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String groupName;
+
+    @Column(nullable = false)
+    private Long maxMembers;
 
     @Column
     private String description;
 
-    @Column(nullable = false)
+    @ManyToOne
+    private MatchList matchList;
+
     @CreationTimestamp
     private LocalDateTime creationDate;
 }

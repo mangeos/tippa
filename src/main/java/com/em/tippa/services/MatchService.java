@@ -2,18 +2,19 @@ package com.em.tippa.services;
 
 import java.util.List;
 
-import com.em.tippa.dto.CreateMatchListDto;
+import com.em.tippa.dto.CreateMatchDto;
 import com.em.tippa.dto.GetMatchListDto;
+import com.em.tippa.models.Match;
 import com.em.tippa.models.MatchList;
 
-public interface MatchListService {
+public interface MatchService {
     List<GetMatchListDto> findAllMatches();
 
     List<GetMatchListDto> findAllByOrderByDateFieldDesc();
 
-    MatchList saveMatch(CreateMatchListDto match);
+    Match saveMatch(CreateMatchDto match);
 
-    MatchList findMatchById(Long id);
+    Match findMatchById(Long id);
 
     void deleteMatchById(Long id);
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout}"
+   xmlns:sec="http://www.thymeleaf.org/extras/springsecurity"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  lang="en"
+>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Groups</title>
+    <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
+  </head>
+  <body>
+    <main class="flex-1 p-5 overflow-auto justify-center items-center flex" layout:fragment="content">
+      <div class=" flex flex-1 gap-1 flex-col justify-center items-center">
+        <table class="max-w-96 bg-white shadow-md rounded-lg overflow-hidden">
+          <thead class="bg-green-500 text-white">
+              <tr>
+                  <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Group ID</th>
+                  <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Group Name</th>
+                  <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Max Members</th>
+              
+                  <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+              </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <!-- Iterera över varje grupp i listan -->
+            <tr th:each="group : ${groups}" class="border-b hover:bg-gray-100">
+             <td class="py-3 px-4">
+        <a th:href="@{'/group/' + ${group.groupID}}" th:text="${group.groupID}">Group ID</a>
+    </td>
+    <td class="py-3 px-4">
+        <a th:href="@{'/group/' + ${group.groupID}}" th:text="${group.groupName}">Group Name</a>
+    </td>
+    <td class="py-3 px-4">
+        <a th:href="@{'/group/' + ${group.groupID}}" th:text="${group.maxMembers}">Max Members</a>
+    </td>
+              
+                <td class="py-3 px-4">
+                    <!-- Formulär för att skicka POST-request med groupID -->
+                    <form th:action="@{/join-group}" method="post" class="inline-block">
+                        <input type="hidden" name="groupID" th:value="${group.groupID}" />
+                          <button type="submit"
+                            class="bg-red-500 text-white font-bold px-4 py-2 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-200">
+                            join
+                        </button>
+                    </form>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+    </main>
+  </body>
+</html>
+

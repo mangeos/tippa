@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.em.tippa.dto.RegistrationDto;
 import com.em.tippa.models.UserEntity;
-import com.em.tippa.services.MatchListService;
+import com.em.tippa.services.MatchService;
 import com.em.tippa.services.UserService;
 
 import jakarta.validation.Valid;
@@ -58,13 +58,11 @@ public class AuthController {
 
     @GetMapping("/")
     public String login() {
-        System.err.println("Home!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return "redirect:login";
     }
 
     @GetMapping("/login")
     public String loginpage() {
-        System.err.println("Login!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return "login";
     }
 

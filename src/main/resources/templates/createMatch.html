@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout}"
+   xmlns:sec="http://www.thymeleaf.org/extras/springsecurity"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  lang="en"
+>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Skapa Match</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
+  </head>
+  <body>
+    <main class="flex-1 p-5 overflow-auto justify-center items-center flex" layout:fragment="content">
+      <div class=" flex flex-1 gap-1 flex-col justify-center items-center">
+        
+        <form method="post" th:action="@{/match}" class="mt-4 space-y-4 flex flex-col">
+
+          <label for="team1" style="font-size: x-large;">Skapa Match</label>
+          <input type="text" id="team1"
+            name="team1"
+            placeholder="Enter your team1" >
+          <input type="text" id="team2"
+            name="team2"
+            placeholder="Enter your team2" >
+          <input type="datetime-local" id="matchDate"
+            name="matchDate"
+            placeholder="Enter your matchDate" >
+          
+
+
+          <button type="submit">Submit</button>
+        </form>
+      </div> 
+    </main>
+  </body>
+</html>

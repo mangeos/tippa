@@ -24,13 +24,11 @@ public class SecurityConfig {
 
         @Bean
         public static PasswordEncoder passwordEncoder() {
-                System.out.println("PasswordEncoder");
                 return new BCryptPasswordEncoder();
         }
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                System.out.println("securityFilterChain");
                 http
                                 .authorizeHttpRequests((requests) -> requests
                                                 .requestMatchers("/login", "/register/*",
@@ -41,7 +39,7 @@ public class SecurityConfig {
                                 .formLogin((form) -> form
                                                 .loginPage("/login")
                                                 .loginProcessingUrl("/login")
-                                                .defaultSuccessUrl("/home?success", false)
+                                                .defaultSuccessUrl("/meny?success", false)
 
                                                 .failureUrl("/login?error=true")
                                                 .permitAll())
@@ -52,7 +50,6 @@ public class SecurityConfig {
         }
 
         public void configure(AuthenticationManagerBuilder builder) throws Exception {
-                System.out.println("configure");
                 builder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         }
 }

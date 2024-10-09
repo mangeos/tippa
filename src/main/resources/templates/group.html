@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout}"
+   xmlns:sec="http://www.thymeleaf.org/extras/springsecurity"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  lang="en"
+>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group</title>
+    <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
+  </head>
+  <body>
+    <main class="flex-1 p-5 overflow-auto justify-center flex" layout:fragment="content">
+   <!-- Kontrollera om gruppen finns -->
+      <div class=" w-full flex flex-col items-center">
+        <div class=" bg-[#4E0056] w-full sm:max-w-[700px] text-white ">
+          <p style="margin-left: 10px;" class="text-[24px]" th:text="${groupM[0].Group.groupName}"></p>
+          <p  style="margin-left: 20px;" class="text-[14px]" th:text="${groupM[0].group.matchList.name}"></p>
+        </div>
+        <table class=" w-full sm:max-w-[700px] bg-white shadow-md overflow-hidden justify-center ">
+          <thead class=" bg-slate-200 text-black">
+            <tr>
+              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">#</th>
+              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Lag</th>
+              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">TOT</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <!-- Iterera över varje grupp i listan -->
+            <tr th:each="g, stat : ${point}" th:with="index=${stat.index + 1}" class="border-b hover:bg-gray-100">
+               <td class="py-3 px-4" th:text="${index}"></td>
+              <td class="py-3 px-4" th:text="${g.user.username}"></td>
+              <td class="py-3 px-4" th:text="${g.points}"></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <hr>
+        <p class="text-[24px]">Matcher</p>
+        
+        <!-- MatchList - Iterera alla matcher -->
+         
+        <table class="w-full sm:max-w-[700px] bg-white shadow-md rounded-lg overflow-hidden ">
+          <thead class="bg-[#4e0056] text-white">
+            <tr>
+              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Lag1</th>
+              <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Lag2</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <!-- Iterera över varje grupp i listan -->
+            <tr th:each="g: ${matches}" class="border-b hover:bg-gray-100">
+              <td class="py-3 px-4" th:text="${g.team1}"></td>
+              <td class="py-3 px-4" th:text="${g.team2}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>
+

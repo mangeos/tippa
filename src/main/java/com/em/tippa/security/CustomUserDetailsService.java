@@ -18,13 +18,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     public CustomUserDetailsService(UserRepository userRepository) {
-        System.out.println("CustomUserDetailsService");
         this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("loadUserByUsername");
         UserEntity user = userRepository.findFirstByUsername(username);
         if (user != null) {
             return new User(

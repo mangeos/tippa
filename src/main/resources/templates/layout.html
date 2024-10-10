@@ -20,54 +20,55 @@
       style="background-color: #37003c"
       class="text-white p-4 flex justify-between items-center"
     >
-      <div sec:authorize="isAuthenticated()">
-        <a href="/logout">logout</a>
-      </div>
-      <div sec:authorize="isAuthenticated()">
-        <a href="/home"> Tipping</a> 
-      </div>
-
      
+    <div sec:authorize="isAuthenticated()">
       <button id="menu-button" class="block lg:hidden focus:outline-none">
         <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          ></path>
-        </svg>
-      </button>
+        <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"
+        ></path>
+       </svg>
+     </button>
+   </div>
+      <a href="/home"> Tipping</a> 
+       <div sec:authorize="isAuthenticated()">
+        <a href="/logout">logout</a>
+      </div>
+    
     </header>
 
     <div class="flex flex-1">
-      <aside
-        style="background-color: #4e0056"
-        id="sidebar"
-        class="text-white w-64 p-4 transition-transform transform -translate-x-full lg:translate-x-0 lg:relative fixed inset-y-0 left-0 z-50 lg:z-auto"
-      >
-        <div class="flex justify-between items-center mb-4">
-          <h2 class="text-lg lg:text-xl">Sidebar</h2>
-          <button id="close-button" class="block lg:hidden focus:outline-none">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
+     
+         <aside sec:authorize="isAuthenticated()"
+         style="background-color: #4e0056"
+         id="sidebar"
+         class="text-white w-64 p-4 transition-transform transform -translate-x-full lg:translate-x-0 lg:relative fixed inset-y-0 left-0 z-50 lg:z-auto"
+         >
+         <div class="flex justify-between items-center mb-4">
+           <h2 class="text-lg lg:text-xl">Sidebar</h2>
+           <button id="close-button" class="block lg:hidden focus:outline-none">
+             <svg
+             class="w-6 h-6"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg"
+             >
+             <path
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             stroke-width="2"
+             d="M6 18L18 6M6 6l12 12"
+             ></path>
             </svg>
           </button>
         </div>
@@ -75,35 +76,36 @@
           <ul>
             <li>
               <a
-                href="/home"
-                class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
-                ><i class="material-icons">home</i>Start</a
+              href="/home"
+              class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
+              ><i class="material-icons">home</i>Start</a
               >
             </li>
             <li>
               <a
-                href="/meny"
-                class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
-                >Meny</a
+              href="/meny"
+              class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
+              >Meny</a
               >
             </li>
             <li>
               <a
-                href="/all-groups"
-                class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
-                >Alla Grupper</a
+              href="/all-groups"
+              class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
+              >Alla Grupper</a
               >
             </li>
             <li>
               <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
-                >Contact</a
+              href="#"
+              class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
+              >Contact</a
               >
             </li>
           </ul>
         </nav>
       </aside>
+     
       <main layout:fragment="content"></main>
     </div>
     <footer

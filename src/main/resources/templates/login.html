@@ -31,25 +31,11 @@
         <div th:if="${param.logout}" class="alert alert-success">
           You have been logged out.
         </div>
-        <div class="flex h-12 w-full justify-center gap-1">
-          <a
-            th:href="@{/}"
-            class="flex-1 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-tl-lg rounded-tr-lg"
-          >
-            Logga in
-          </a>
-          <a
-            th:href="@{/register}"
-            class="flex-1 text-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-tl-lg rounded-tr-lg"
-          >
-            Skapa konto
-          </a>
-        </div>
+       
+        
         <div class="flex flex-1">
-          <form method="post" th:action="@{/login}" class="mt-4 space-y-4">
-            <label for="username" class="text-gray-700 font-medium block"
-              >Username:</label
-            >
+          <form method="post" th:action="@{/login}" class="flex flex-col mt-4 space-y-4  items-center">
+            <p class=" text-xl font-bold">Logga in</p>
             <input
               type="text"
               id="username"
@@ -57,9 +43,7 @@
               placeholder="Enter your username"
               class="rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full max-w-96"
             />
-            <label for="password" class="text-gray-700 font-medium block"
-              >Password:</label
-            >
+          
             <input
               type="password"
               id="password"
@@ -75,8 +59,8 @@
               >
                 Login
               </button>
-              <a href="#" class="text-sm text-blue-500 hover:underline"
-                >Forgot Password?</a
+              <a th:href="@{/register}"class="text-sm text-blue-500 hover:underline"
+                >Inget konto? Skapa ett här</a
               >
             </div>
           </form>

@@ -15,18 +15,28 @@
     <link rel="stylesheet" th:href="@{/css/style.build.tailwind.css}" />
   </head>
   <body>
-    <main class="flex-1 p-5 overflow-auto" layout:fragment="content">
+    <main class="flex-1 p-5 items-center flex flex-col" layout:fragment="content">
       <h1 class="text-4xl">Dina Grupper</h1>
       <br />
       <hr>
-      <div>
-        <div th:each="g : ${allGroupByCreator}" class="border-b hover:bg-gray-100">
-          <a th:href="'group/'+${g.group.groupID}">
-           <span class="py-3 px-4" th:text="${g.group.groupID}"></span>
-            <span class="py-3 px-4" th:text="${g.group.groupName}"></span>
-          </a>
-        </div>
-      </div>
+      
+      <table class="w-full md:w-[500px] bg-white border border-gray-300 rounded-lg shadow-lg">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">Grupp</th>
+                        <th class="py-3 px-6 text-left">Position</th>
+                    </tr>
+                </thead>
+                <tbody th:each="g : ${allGroupByCreator}" class="text-gray-600 text-sm font-light">
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <!-- Placera länken inuti cellen -->
+                        <td class="py-3 px-6 text-left whitespace-nowrap">
+                            <a th:href="'group/'+${g.group.groupID}" class="text-blue-600 hover:underline" th:text="${g.group.groupName}"></a>
+                        </td>
+                        <td class="py-3 px-6 text-left">  <a th:href="'group/'+${g.group.groupID}" class="text-blue-600 hover:underline">1</a></td>
+                    </tr>
+                </tbody>
+            </table>
     </main>
   </body>
 </html>

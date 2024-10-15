@@ -8,7 +8,7 @@
 >
   <head>
     <meta charset="UTF-8" />
-    <title>Hello TailWind CSS</title>
+    <title>Start</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -17,41 +17,68 @@
   </head>
   <body class="bg-gray-100 text-gray-900 flex flex-col h-screen">
     <header
-      style="background-color: #37003c"
-      class="text-white p-4 flex justify-between items-center"
+      style="background-color: #045d58"
+      class="text-white p-4 flex justify-center items-center"
     >
-     
-    <div sec:authorize="isAuthenticated()">
-      <button id="menu-button" class="block lg:hidden focus:outline-none">
-        <svg
-        class="w-6 h-6"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        >
-        <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M4 6h16M4 12h16M4 18h16"
-        ></path>
-       </svg>
-     </button>
-   </div>
-      <a href="/home"> Tipping</a> 
-       <div sec:authorize="isAuthenticated()">
-        <a href="/logout">logout</a>
-      </div>
+      <div class=" flex flex-row w-full justify-center items-center">
+        
+          <button sec:authorize="isAuthenticated()" id="menu-button" class="block md:hidden float-left w-[50%] focus:outline-none items-center">
+            <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            >
+            <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+            </svg>
+         </button>
     
+
+       <!-- <a
+       href="/home"
+       class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
+       ><i class="material-icons">home</i>Start</a
+       > -->
+      
+         <a
+       href="/home"
+       class="block py-2 px-4  text-base lg:text-lg w-[25%] items-center"
+       >Start</a
+       >
+
+
+       <a
+       href="/meny"
+       class="md:block hidden py-2 px-4 hover:bg-gray-700 text-base lg:text-lg items-center"
+       >Meny</a
+       >
+   
+       <a
+       href="/all-groups"
+       class="md:block hidden py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
+       >Alla Grupper</a
+       >
+    <div class="flex justify-end w-[25%] float-right items-center">
+      <a sec:authorize="isAuthenticated()" class="block py-2 px-4 text-base lg:text-lg " title="Logout" href="/logout"> 
+    <i class="material-icons">logout</i></a>
+
+    </div>
+     </div>
+
     </header>
 
     <div class="flex flex-1">
      
          <aside sec:authorize="isAuthenticated()"
-         style="background-color: #4e0056"
+         style="background-color: #045d58"
          id="sidebar"
-         class="text-white w-64 p-4 transition-transform transform -translate-x-full lg:translate-x-0 lg:relative fixed inset-y-0 left-0 z-50 lg:z-auto"
+         class="md:hidden text-white w-full p-4 transition-transform transform -translate-x-full lg:translate-x-0 lg:relative fixed inset-y-0 left-0 z-50 lg:z-auto"
          >
          <div class="flex justify-between items-center mb-4">
            <h2 class="text-lg lg:text-xl">Sidebar</h2>
@@ -95,24 +122,17 @@
               >Alla Grupper</a
               >
             </li>
-            <li>
-              <a
-              href="#"
-              class="block py-2 px-4 hover:bg-gray-700 text-base lg:text-lg"
-              >Contact</a
-              >
-            </li>
+           
           </ul>
         </nav>
       </aside>
-     
       <main layout:fragment="content"></main>
     </div>
     <footer
-      style="background-color: #37003c"
+      style="background-color: #045d58"
       class="text-white p-4 text-center"
     >
-      <p class="text-base lg:text-lg">&copy; 2024 Your Company</p>
+      <p class="text-base lg:text-lg">&copy; 2024</p>
     </footer>
 
     <script>
